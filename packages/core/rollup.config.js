@@ -22,7 +22,8 @@ export default {
     entryFileNames: 'index.js',
   },
   external:[
-
+    "zod",
+    "zod-to-json-schema"
   ],
   plugins: [
     alias({

@@ -23,22 +23,24 @@ export class ArtiusModelWrapper < T extends ArtiusBaseProvider > {
   }
   
  async generate(
-    config: ArtiusModelWrapperInput
+    input: ArtiusModelWrapperInput
   ): Promise <ArtiusModelResponse>{
     return this.provider.generate(
-      config,
-      this.options.generation ?? {}
+      input,
+      this.options.generation ?? {},
+      input.options
     );
   }
   
   async generateStream(
-    config: ArtiusModelWrapperInput,
+    input: ArtiusModelWrapperInput,
     callback: (chunk: ArtiusModelResponse) => void,
-  ): Promise <ArtiusModelResponse>{
-    return this.provider.generateStream(
-      config,
+  ): Promise <void>{
+   this.provider.generateStream(
+      input,
       callback,
-      this.options.generation ?? {}
+      this.options.generation ?? {},
+      input.options
     );
   }
   
