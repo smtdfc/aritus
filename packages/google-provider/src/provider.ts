@@ -11,12 +11,14 @@ import {
   ArtiusModelResponse,
   ArtiusModelGenerationConfig,
   ArtiusChatHistory,
-  ArtiusChatDataFile
+  ArtiusChatDataFile,
+  ArtiusModelGenerationOptions,
 } from 'artius';
 
 import {
   normalizeChatHistory,
   normalizeChatResponse,
+  createGenerateOptions,
   createGenerateConfig
 } from './helpers/index.js';
 
@@ -69,7 +71,8 @@ export class ArtiusGoogleProvider extends ArtiusBaseProvider {
   async generateStream(
     input: ArtiusModelWrapperInput,
     callback: (chunk: ArtiusModelResponse) => void,
-    generationConfig ? : ArtiusModelGenerationConfig
+    generationConfig ? : ArtiusModelGenerationConfig,
+    options ? : ArtiusModelGenerationOptions
   ): Promise < void > {
     const { parts } = await this.buildContents(input);
     const response = await this.ai.models.generateContentStream({
@@ -85,13 +88,19 @@ export class ArtiusGoogleProvider extends ArtiusBaseProvider {
   
   async generate(
     input: ArtiusModelWrapperInput,
-    generationConfig ? : ArtiusModelGenerationConfig
+    generationConfig ? : ArtiusModelGenerationConfig,
+    options ? : ArtiusModelGenerationOptions
   ): Promise < ArtiusModelResponse > {
+    let opts = options ? createGenerateOptions(options) : {};
+    
     const { parts } = await this.buildContents(input);
     const response = await this.ai.models.generateContent({
       model: this.modelName,
       contents: parts,
-      config: createGenerateConfig(generationConfig ?? {}),
+      config: {
+        ...createGenerateConfig(generationConfig ?? {}),
+        ...opts
+      },
     });
     
     return normalizeChatResponse(response);
@@ -101,8 +110,11 @@ export class ArtiusGoogleProvider extends ArtiusBaseProvider {
   async generateFromHistory(
     history: ArtiusChatHistory,
     input: ArtiusModelWrapperInput,
-    generationConfig ? : ArtiusModelGenerationConfig
+    generationConfig ? : ArtiusModelGenerationConfig,
+    options ? : ArtiusModelGenerationOptions
   ): Promise < ArtiusModelResponse > {
+    let opts = options ? createGenerateOptions(options) : {};
+    
     const { parts, files } = await this.buildContents(input);
     history.push({
       type: "human",
@@ -116,7 +128,10 @@ export class ArtiusGoogleProvider extends ArtiusBaseProvider {
     const response = await this.ai.models.generateContent({
       model: this.modelName,
       contents: normalized,
-      config: createGenerateConfig(generationConfig ?? {}),
+      config: {
+        ...createGenerateConfig(generationConfig ?? {}),
+        ...opts
+      },
     });
     
     let normalizedRes = normalizeChatResponse(response)
@@ -129,4 +144,3 @@ export class ArtiusGoogleProvider extends ArtiusBaseProvider {
     return normalizedRes;
   }
 }
-

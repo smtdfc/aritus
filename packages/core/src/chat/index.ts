@@ -3,7 +3,8 @@ import {
   ArtiusChatData,
   ArtiusChatHistory,
   ArtiusModelWrapperInput,
-  ArtiusModelResponse
+  ArtiusModelResponse,
+  ArtiusModelGenerationOptions,
   
 } from '../types/index.js';
 
@@ -23,7 +24,8 @@ export class ArtiusChat < T extends ArtiusBaseProvider > {
   }
   
   async send(
-    input: ArtiusModelWrapperInput
+    input: ArtiusModelWrapperInput,
+
   ): Promise < ArtiusModelResponse > {
     if (!this.model.provider) {
       throw Error("Cannot find model provider !");
@@ -32,9 +34,10 @@ export class ArtiusChat < T extends ArtiusBaseProvider > {
     let response = await this.model.provider.generateFromHistory(
       this.history,
       input,
-      this.model.options.generation ?? {}
+      this.model.options.generation ?? {},
+      input.options
     );
-    console.log(this.history);
+    
     return response;
   }
   
