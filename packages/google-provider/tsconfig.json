@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist/",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "nodenext",
+    "target": "ES6",
+    "module": "NodeNext",
+    "paths": {
+      "artius": ["../core/dist/"]
+    }
+  },
+  "include": ["src/**/*", "**/jsx.d.ts"],
+  "exclude": ["node_modules", "dist"]
+}
