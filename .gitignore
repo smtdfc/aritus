@@ -2,3 +2,4 @@ test
 test/**
 dist
 dist/**
+.env
