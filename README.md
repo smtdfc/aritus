@@ -1,6 +1,6 @@
 # Aritus 
 
-**Aritus** is a lightweight and extensible wrapper that unifies multiple LLM providers (OpenAI, Anthropic, Cohere, etc.) into a single, consistent API. Stop rewriting client logic. Start building.
+**Aritus** is a lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API. Stop rewriting client logic. Start building.
 
 ## Features
 - Unified interface for multiple LLM providers
@@ -11,7 +11,7 @@
 
 ## Supported Providers
 
-- [x] Google Gemini
+- Google
 
 ## Installation
 

@@ -14,7 +14,7 @@
   ],
   "author": "smtdfc",
   "license": "MIT",
-  "description": "A lightweight and extensible wrapper that unifies multiple LLM providers ",
+  "description": "A lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API.",
   "dependencies": {
     "zod": "^3.24.4",
     "zod-to-json-schema": "^3.24.5"
