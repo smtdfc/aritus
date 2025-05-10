@@ -2,7 +2,9 @@ import { ArtiusBaseProvider } from '../provider.js';
 import {
   ArtiusModelWrapperInput,
   ArtiusModelGenerationConfig,
-  ArtiusModelResponse
+  ArtiusModelResponse,
+  ArtiusToolDecaration,
+  ArtiusToolMap
 } from '../types/index.js';
 
 
@@ -12,11 +14,19 @@ export interface ArtiusModelWrapperOptions {
 };
 
 export class ArtiusModelWrapper < T extends ArtiusBaseProvider > {
-  
+  public tools:ArtiusToolMap = {};
   constructor(
     public provider: T,
     public options: ArtiusModelWrapperOptions = {}
-  ) {}
+  ) {
+    
+  }
+  
+  useTool(
+    tool:ArtiusToolDecaration
+  ):void{
+    this.tools[tool.name] = tool;
+  }
   
   getName(): string {
     return "No model implementation ";
@@ -28,7 +38,8 @@ export class ArtiusModelWrapper < T extends ArtiusBaseProvider > {
     return this.provider.generate(
       input,
       this.options.generation ?? {},
-      input.options
+      input.options,
+      this.tools
     );
   }
   
@@ -40,7 +51,8 @@ export class ArtiusModelWrapper < T extends ArtiusBaseProvider > {
       input,
       callback,
       this.options.generation ?? {},
-      input.options
+      input.options,
+      this.tools
     );
   }
   
