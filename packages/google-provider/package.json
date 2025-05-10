@@ -2,6 +2,7 @@
   "name": "artius-google-provider",
   "version": "0.0.1",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts", 
   "scripts": {
     "build": "rollup -c",
     "exec": "node ./dist",
@@ -9,12 +10,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "smtdfc"
+    "artius", "google", "provider", "smtdfc", "integration"
   ],
   "author": "smtdfc",
   "license": "MIT",
-  "description": "",
+  "description": "A Google provider integration for the Artius library.",
   "dependencies": {
     "@google/genai": "^0.13.0"
-  }
+  },
+  "devDependencies": {
+
+  },
+  "files": [
+    "README.md",
+    "dist/**"
+  ]
 }

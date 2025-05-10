@@ -1,5 +1,5 @@
 {
-  "name": "artius",
+  "name": "artius-helpers",
   "version": "0.0.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts", 
@@ -10,14 +10,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "artius", "library", "smtdfc", "typescript", "validation", "zod"
+    "artius", "helpers", "utilities", "smtdfc"
   ],
   "author": "smtdfc",
   "license": "MIT",
-  "description": "A lightweight and extensible wrapper that unifies multiple LLM providers ",
+  "description": "A collection of utility functions and helpers for the Artius library.",
   "dependencies": {
-    "zod": "^3.24.4",
-    "zod-to-json-schema": "^3.24.5"
+
   },
   "devDependencies": {
   },

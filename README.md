@@ -6,24 +6,20 @@
 - Unified interface for multiple LLM providers
 - Streaming & non-streaming support
 - Chat manage
+- Support tool calling 
+
 
 ## Supported Providers
 
-- [ ] OpenAI
-- [ ] Anthropic
-- [ ] Cohere
-- [ ] Mistral (coming soon)
-- [x] Google Gemini (coming soon)
+- [x] Google Gemini
 
 ## Installation
 
 ```bash
 npm install aritus
-# or
-yarn add aritus
+npm install artius-google-provider
 ```
 
 ## Coming Soon
 - Fallback & Retry logic
 - Plugin system (logging, caching, observability)
-- Support tool calling 
