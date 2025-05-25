@@ -12,6 +12,7 @@
 ## Supported Providers
 
 - Google
+- OpenAI (Beta)
 
 ## Installation
 
