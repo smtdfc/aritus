@@ -1,6 +1,6 @@
-import { ZodTypeAny } from "zod";
+import { z, ZodTypeAny } from 'zod';
 
-export type ArtiusSchemaPack = {
-  zod: ZodTypeAny;
-  json: object;
-};
+export interface ArtiusSchema<T extends ZodTypeAny> {
+  name: string;
+  zodSchema: T;
+}

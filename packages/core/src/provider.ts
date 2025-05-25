@@ -1,35 +1,41 @@
 import {
-  ArtiusChatHistory,
-  ArtiusModelWrapperInput,
-  ArtiusModelGenerationConfig,
+  ArtiusModelConfig,
+  ArtiusInput,
   ArtiusModelResponse,
-  ArtiusModelGenerationOptions,
-  ArtiusToolMap
+  ArtiusToolMap,
+  ArtiusChatHistory,
 } from './types/index.js';
 
-export abstract class ArtiusBaseProvider {
+import { ArtiusGenerationError } from './errors/index.js';
 
-  abstract generate(
-    input: ArtiusModelWrapperInput,
-    generationConfig ? : ArtiusModelGenerationConfig,
-    options?:ArtiusModelGenerationOptions,
-    tools?:ArtiusToolMap
-  ): ArtiusModelResponse | Promise < ArtiusModelResponse > ;
-  
-  abstract generateStream(
-    input: ArtiusModelWrapperInput,
-    callback: (chunk: ArtiusModelResponse) => void,
-    generationConfig ? : ArtiusModelGenerationConfig,
-    options?:ArtiusModelGenerationOptions,
+export class ArtiusBaseProvider {
+  public name = 'unknown_provider';
+
+  constructor(
+    public modelName: string,
+    protected config: ArtiusModelConfig = {}
+  ) {}
+
+  setModelConfig(config: ArtiusModelConfig): void {
+    this.config = config;
+  }
+
+  async generate(
+    input: ArtiusInput,
     tools?: ArtiusToolMap
-  ): ArtiusModelResponse | Promise < void > ;
-  
-  abstract generateFromHistory(
-    history: ArtiusChatHistory,
-    input: ArtiusModelWrapperInput,
-    generationConfig ? : ArtiusModelGenerationConfig,
-    options?:ArtiusModelGenerationOptions,
-    tools?:ArtiusToolMap
-  ): ArtiusModelResponse | Promise < ArtiusModelResponse >;
+  ): Promise<ArtiusModelResponse> {
+    throw new ArtiusGenerationError(
+      `This provider not implementation method !`
+    );
+  }
 
+  async generateFromHistory(
+    history: ArtiusChatHistory,
+    input: ArtiusInput,
+    tools?: ArtiusToolMap
+  ): Promise<ArtiusModelResponse> {
+    throw new ArtiusGenerationError(
+      `This provider not implementation method !`
+    );
+  }
 }

@@ -1,28 +1,28 @@
 {
-  "name": "artius",
-  "version": "0.0.1",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts", 
-  "scripts": {
-    "build": "rollup -c",
-    "exec": "node ./dist",
-    "dec": "tsc --declaration --allowJs --emitDeclarationOnly",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "artius", "library", "smtdfc", "typescript", "validation", "zod"
-  ],
-  "author": "smtdfc",
-  "license": "MIT",
-  "description": "A lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API.",
-  "dependencies": {
-    "zod": "^3.24.4",
-    "zod-to-json-schema": "^3.24.5"
-  },
-  "devDependencies": {
-  },
-  "files": [
-    "README.md",
-    "dist/**"
-  ]
+	"name": "artius",
+	"version": "0.0.1",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"build": "rollup -c",
+		"exec": "node ./dist",
+		"dec": "tsc --declaration --allowJs --emitDeclarationOnly",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepublishOnly": "npm run dec && npm run build"
+	},
+	"keywords": [
+		"artius", "library", "smtdfc", "typescript", "validation", "zod"
+	],
+	"author": "smtdfc",
+	"license": "MIT",
+	"description": "A lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API.",
+	"dependencies": {
+		"zod": "^3.24.4",
+		"zod-to-json-schema": "^3.24.5"
+	},
+	"devDependencies": {},
+	"files": [
+		"README.md",
+		"dist/**"
+	]
 }

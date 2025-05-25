@@ -11,7 +11,8 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const shouldMinify = process.env.MINIFY === 'true' || process.env.NODE_ENV === 'production';
+const shouldMinify =
+  process.env.MINIFY === 'true' || process.env.NODE_ENV === 'production';
 
 export default {
   input: './src/index.ts',
@@ -20,11 +21,11 @@ export default {
     format: 'esm',
     sourcemap: !shouldMinify,
     entryFileNames: 'index.js',
+    paths: !shouldMinify && {
+      artius: path.resolve(__dirname, '../core/dist/index.js'),
+    },
   },
-  external:[
-    "zod",
-    "zod-to-json-schema"
-  ],
+  external: ['artius', 'openai'],
   plugins: [
     alias({
       entries: [
@@ -43,7 +44,5 @@ export default {
       ],
       plugins: ['@babel/plugin-syntax-jsx'],
     }),
-
   ].filter(Boolean),
-  
 };

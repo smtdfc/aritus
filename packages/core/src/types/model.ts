@@ -1,28 +1,18 @@
-import {ArtiusSchemaPack} from './schema.js';
-
-export interface ArtiusModelWrapperInput {
-  prompt: string,
-  images?: string[],
-  options?:ArtiusModelGenerationOptions
-}
-
-export interface ArtiusModelResponse {
-  original?: any,
-  text: string,
-  schema?:any,
-  functionCall?:any
-}
-
 export interface ArtiusModelGenerationConfig {
-  maxOutputTokens ? : number
-  temperature ? : number
-  topK ? : number
-  topP ? : number,
-  systemInstruction?: string 
+  topK?: number;
+  topP?: number;
+  temperature?: number;
+  maxOutputTokens?: number;
 }
 
-export interface ArtiusModelGenerationOptions{
-  schemaGenertion?:boolean,
-  schema?: ArtiusSchemaPack,
-  priorityTools?:boolean
+export interface ArtiusProviderConfig {
+  modelName: string;
+  apiKey: string;
+  baseURL?: string;
+}
+
+export interface ArtiusModelConfig {
+  provider?: ArtiusProviderConfig;
+  systemInstruction?: string;
+  generation?: ArtiusModelGenerationConfig;
 }

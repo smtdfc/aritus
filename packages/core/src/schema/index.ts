@@ -1,13 +1,15 @@
-import { z, ZodTypeAny } from "zod";
-import { zodToJsonSchema } from "zod-to-json-schema";
-import { ArtiusSchemaPack } from '../types/index.js';
+import { z, ZodTypeAny } from 'zod';
+import { ArtiusSchema } from '../types/index.js';
 
+export * from './json.js';
 export const zod = z;
-export function defineSchema < T extends ZodTypeAny > (schema: T): ArtiusSchemaPack {
+
+export function createSchema<T extends ZodTypeAny>(
+  name: string,
+  schema: T
+): ArtiusSchema<T> {
   return {
-    zod: schema,
-    json: zodToJsonSchema(schema),
+    name,
+    zodSchema: schema,
   };
 }
-
-

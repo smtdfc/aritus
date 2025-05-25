@@ -1,30 +1,13 @@
-import {
-  ArtiusModelWrapperInput,
-  ArtiusModelResponse
-} from './model.js';
+import { ArtiusInput } from './input.js';
+import { ArtiusModelResponse } from './response.js';
 
-export interface ArtiusChatDataFile {
-  uri: string,
-  mimeType: string
+export type ArtiusChatRole = 'model' | 'user';
+
+export interface ArtiusChatMessage {
+  time: string;
+  id: string;
+  role: ArtiusChatRole;
+  content: ArtiusInput | ArtiusModelResponse;
 }
 
-export interface ArtiusChatDataHuman {
-  type: "human";
-  content: ArtiusModelWrapperInput;
-  options ? : any;
-  files ? : ArtiusChatDataFile[];
-  functionCallResult: Record < string,
-  any > ;
-}
-
-export interface ArtiusChatDataOther {
-  type: "model" | "system";
-  content: ArtiusModelResponse;
-  options ? : any;
-  files ? : ArtiusChatDataFile[];
-  functionCall: any[];
-}
-
-export type ArtiusChatData = ArtiusChatDataHuman | ArtiusChatDataOther;
-
-export type ArtiusChatHistory = ArtiusChatData[];
+export type ArtiusChatHistory = Array<ArtiusChatMessage>;

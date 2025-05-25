@@ -1,6 +1,6 @@
-# Aritus 
+# Artius 
 
-**Aritus** is a lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API. Stop rewriting client logic. Start building.
+**Artius** is a lightweight and extensible wrapper that unifies multiple LLM providers into a single, consistent API. Stop rewriting client logic. Start building.
 
 ## Features
 - Unified interface for multiple LLM providers
@@ -16,7 +16,7 @@
 ## Installation
 
 ```bash
-npm install aritus
+npm install Artius
 npm install artius-google-provider
 ```
 
